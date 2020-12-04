@@ -18,12 +18,14 @@ app.use(require('./routes/usuario'));
 app.use(require('./routes/categoria'));
 app.use(require('./routes/login'));
 
-
-mongoose.connect('mongodb://localhost:27017/cafeteria', {
+mongoose.connect('mongodb+srv://admin:978654321.0@cluster0.pglf5.mongodb.net/cafeteria', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true
+}, (err, res) => {
+    if (err) throw err;
+    console.log('Base de datos ONLINE');
 });
 
 app.listen(process.env.PORT, () => {
