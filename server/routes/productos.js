@@ -10,6 +10,7 @@ app.get('/productos', function(req, res) {
     Productos.find({ estado: true })
         .skip(Number(desde))
         .limit(Number(hasta))
+        .populate('nombre precioUni categoria', 'usuario')
         .exec((err, productos) => {
             if (err) {
                 return res.status(400).json({
