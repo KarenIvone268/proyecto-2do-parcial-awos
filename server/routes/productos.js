@@ -7,10 +7,10 @@ app.get('/productos', function(req, res) {
     let desde = req.query.desde || 0;
     let hasta = req.query.hasta || 5;
 
-    Productos.find({ estado: true })
+    Productos.find({ disponible: true })
         .skip(Number(desde))
         .limit(Number(hasta))
-        .populate('usuario', 'nombre')
+        //.populate('usuario', 'nombre')
         .exec((err, productos) => {
             if (err) {
                 return res.status(400).json({
@@ -72,7 +72,7 @@ app.put('/productos/:id', function(req, res) {
             res.json({
                 ok: true,
                 msg: 'Producto actualizado con exito',
-                usuario: prdDB
+                prdDB
             });
         });
 });
